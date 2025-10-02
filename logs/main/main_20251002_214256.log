@@ -1,0 +1,2 @@
+2025-10-02 21:42:56,704 - INFO - Original dataframe shape: (3816, 14)
+2025-10-02 21:42:56,706 - INFO - Total rows in df without NaN or null values: 3783

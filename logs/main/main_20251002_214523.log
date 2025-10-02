@@ -1,0 +1,16 @@
+2025-10-02 21:45:23,102 - INFO - Original dataframe shape: (3816, 14)
+2025-10-02 21:45:23,103 - INFO - Total rows in df without NaN or null values: 3783
+2025-10-02 21:45:23,198 - INFO - Kolom dengan data lengkap (>= 70.0%): 57
+2025-10-02 21:45:23,198 - INFO - Kolom dengan data tidak lengkap (kurang dari 70.0%): 481
+2025-10-02 21:45:23,202 - INFO - 
+Filtered DataFrame shape: (57, 57)
+2025-10-02 21:45:23,202 - INFO - Data completeness setelah filtering: 100.00%
+2025-10-02 21:45:23,225 - INFO - 
+Enhanced DataFrame shape: (57, 151)
+2025-10-02 21:45:23,225 - INFO - Jumlah fitur asli: 57
+2025-10-02 21:45:23,225 - INFO - Jumlah fitur baru: 94
+2025-10-02 21:45:23,225 - INFO - Total fitur: 151
+2025-10-02 21:45:23,225 - INFO - 
+Statistik Enhanced DataFrame:
+2025-10-02 21:45:23,226 - INFO - Data completeness: 98.95%
+2025-10-02 21:45:23,227 - INFO - Kolom dengan data tidak lengkap di Enhanced DataFrame: 39
