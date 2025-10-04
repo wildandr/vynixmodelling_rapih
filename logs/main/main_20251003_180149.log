@@ -1,0 +1,419 @@
+2025-10-03 18:01:49,485 - INFO - Original dataframe shape: (3816, 14)
+2025-10-03 18:01:49,486 - INFO - Total rows in df without NaN or null values: 3783
+2025-10-03 18:01:49,594 - INFO - Kolom dengan data lengkap (>= 70.0%): 57
+2025-10-03 18:01:49,594 - INFO - Kolom dengan data tidak lengkap (kurang dari 70.0%): 481
+2025-10-03 18:01:49,596 - INFO - 
+Filtered DataFrame shape: (57, 57)
+2025-10-03 18:01:49,596 - INFO - Data completeness setelah filtering: 100.00%
+2025-10-03 18:01:49,617 - INFO - 
+Enhanced DataFrame shape: (57, 151)
+2025-10-03 18:01:49,617 - INFO - Jumlah fitur asli: 57
+2025-10-03 18:01:49,617 - INFO - Jumlah fitur baru: 94
+2025-10-03 18:01:49,617 - INFO - Total fitur: 151
+2025-10-03 18:01:49,617 - INFO - 
+Statistik Enhanced DataFrame:
+2025-10-03 18:01:49,618 - INFO - Data completeness: 98.95%
+2025-10-03 18:01:49,620 - INFO - Kolom dengan data tidak lengkap di Enhanced DataFrame: 39
+2025-10-03 18:01:49,627 - INFO - 
+Enhanced DataFrame saved to: datasets/fundamental/TSLA_enhanced_features.csv
+2025-10-03 18:01:49,627 - INFO - DataFrame setelah filter q > 2012-Q1: (53, 151)
+2025-10-03 18:01:49,627 - INFO - Data completeness: 100.00%
+2025-10-03 18:01:49,628 - INFO - Processing technical and fundamental data...
+2025-10-03 18:01:49,628 - INFO - Starting complete preprocessing pipeline with quarter shift mapping
+2025-10-03 18:01:49,628 - INFO - Preparing technical data
+2025-10-03 18:01:49,630 - INFO - Technical data prepared: 3783 rows, 17 columns
+2025-10-03 18:01:49,630 - INFO - Preparing fundamental data
+2025-10-03 18:01:49,630 - INFO - Fundamental data prepared: 53 quarters, 151 features
+2025-10-03 18:01:49,630 - INFO - Converting quarterly data to daily format with quarter shift mapping
+2025-10-03 18:01:50,806 - INFO - Daily conversion completed: 4839 days, 151 features
+2025-10-03 18:01:50,806 - INFO - Data availability with quarter shift mapping: 98.12%
+2025-10-03 18:01:50,807 - INFO - Combining technical and fundamental data
+2025-10-03 18:01:50,819 - INFO - Data combination completed: 3330 rows, 168 columns
+2025-10-03 18:01:50,819 - INFO - Date range: 2012-04-02 to 2025-06-30
+2025-10-03 18:01:50,820 - INFO - Filtering data from 2012-Q2 to 2025-Q2
+2025-10-03 18:01:50,827 - INFO - Filtering completed: 3330 rows remaining
+2025-10-03 18:01:50,827 - INFO - Saving processed data to: datasets/processed/main_processed_data.csv
+2025-10-03 18:01:51,108 - INFO - Data saved successfully: 3330 rows, 168 columns
+2025-10-03 18:01:51,108 - INFO - Complete preprocessing pipeline finished successfully
+2025-10-03 18:01:51,109 - INFO - Data processing completed: (3330, 168)
+2025-10-03 18:01:51,109 - INFO - Processed data saved to: datasets/processed/main_processed_data.csv
+2025-10-03 18:01:51,109 - INFO - 
+Final processed data shape: (3330, 168)
+2025-10-03 18:01:51,109 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-30 00:00:00
+2025-10-03 18:01:51,109 - INFO - Technical columns: 8
+2025-10-03 18:01:51,110 - INFO - Fundamental columns: 157
+2025-10-03 18:01:51,110 - INFO - 
+Preprocessing completed successfully!
+2025-10-03 18:01:51,110 - INFO - Data completeness: 98.30%
+2025-10-03 18:01:51,111 - INFO - 
+=== Applying Triple Barrier Method ===
+2025-10-03 18:01:51,111 - INFO - Starting Triple Barrier Method labeling...
+2025-10-03 18:01:51,528 - INFO - 
+=== Generating Triple Barrier Visualizations ===
+2025-10-03 18:01:51,528 - INFO - Generating Triple Barrier visualizations...
+2025-10-03 18:01:51,823 - INFO - Visualizations generated: 2 files
+2025-10-03 18:01:51,823 - INFO - label_1_html: logs/visualization/visualisasi_20251003_180151_label_positif.html
+2025-10-03 18:01:51,823 - INFO - label_-1_html: logs/visualization/visualisasi_20251003_180151_label_negatif.html
+2025-10-03 18:01:51,823 - INFO - 
+=== Triple Barrier Implementation Complete ===
+2025-10-03 18:01:51,823 - INFO - Labels generated: 3314 samples
+2025-10-03 18:01:51,823 - INFO - Results saved to: logs/triple_barrier/triple_barrier_results.csv
+2025-10-03 18:01:51,823 - INFO - 
+=== Merging Triple Barrier Labels with Features ===
+2025-10-03 18:01:51,824 - INFO - Merging triple_barrier_df with filtered_df based on decision_date...
+2025-10-03 18:01:51,831 - INFO - Triple Barrier data shape: (3314, 11)
+2025-10-03 18:01:51,832 - INFO - Filtered data shape: (3330, 168)
+2025-10-03 18:01:51,832 - INFO - Merged data shape: (3314, 178)
+2025-10-03 18:01:51,833 - INFO - Successfully merged: 3251 complete rows
+2025-10-03 18:01:52,169 - INFO - Merged labeled data saved to: datasets/processed/merged_labeled_data.csv
+2025-10-03 18:01:52,169 - INFO - 
+=== Final Summary ===
+2025-10-03 18:01:52,169 - INFO - Original processed data shape: (3330, 168)
+2025-10-03 18:01:52,169 - INFO - Triple Barrier labels: 3314 samples
+2025-10-03 18:01:52,169 - INFO - Merged labeled data shape: (3314, 178)
+2025-10-03 18:01:52,169 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-30 00:00:00
+2025-10-03 18:01:52,169 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-05 00:00:00
+2025-10-03 18:01:52,169 - INFO - Technical + Fundamental features: 168 columns
+2025-10-03 18:01:52,169 - INFO - Total features in merged data: 178 columns
+2025-10-03 18:01:52,169 - INFO - Triple Barrier parameters used: {'volatility_window': 20, 'upper_barrier_multiplier': 1.0, 'lower_barrier_multiplier': 1.0, 'time_barrier_days': 15, 'verbose': True}
+2025-10-03 18:01:52,169 - INFO - 
+All preprocessing, labeling, and merging completed successfully!
+2025-10-03 18:01:52,170 - INFO - Dropped columns: ['decision_date', 'entry_date', 'end_date', 'end_price', 'return', 'barrier_touched', 'value_at_barrier_touched', 'time_converted', 'datetime', 'time']
+2025-10-03 18:01:52,170 - INFO - Training DataFrame shape after dropping columns: (3314, 168)
+2025-10-03 18:01:52,170 - INFO - Training DataFrame columns: ['entry_price', 'upper_barrier', 'lower_barrier', 'label', 'open', 'high', 'low', 'close', 'Volume', 'Histogram', 'MACD', 'Signal', 'K', 'D', 'Turnover (Cr)', '10 MA Turnover', 'Turnover / 10MA (X)', 'AccountsPayableCurrent', 'AccountsReceivableNetCurrent', 'AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment', 'AccumulatedOtherComprehensiveIncomeLossNetOfTax', 'AdditionalPaidInCapitalCommonStock', 'AllocatedShareBasedCompensationExpense', 'Assets', 'AssetsCurrent', 'CashAndCashEquivalentsAtCarryingValue', 'CommonStockValue', 'ComprehensiveIncomeNetOfTax', 'CostOfRevenue', 'EmployeeRelatedLiabilitiesCurrent', 'GrossProfit', 'IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest', 'IncomeTaxExpenseBenefit', 'IncreaseDecreaseInAccountsPayableAndAccruedLiabilities', 'IncreaseDecreaseInAccountsReceivable', 'IncreaseDecreaseInOtherNoncurrentLiabilities', 'IncreaseDecreaseInPrepaidDeferredExpenseAndOtherAssets', 'InterestCostsCapitalized', 'InterestExpense', 'InventoryNet', 'InventoryWriteDown', 'InvestmentIncomeInterest', 'Liabilities', 'LiabilitiesAndStockholdersEquity', 'LiabilitiesCurrent', 'NetCashProvidedByUsedInFinancingActivities', 'NetCashProvidedByUsedInInvestingActivities', 'NetCashProvidedByUsedInOperatingActivities', 'NetIncomeLoss', 'NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1', 'NoncurrentAssets', 'OperatingExpenses', 'OperatingIncomeLoss', 'OtherAssetsNoncurrent', 'OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax', 'OtherLiabilitiesNoncurrent', 'OtherNonoperatingIncomeExpense', 'PaymentsToAcquirePropertyPlantAndEquipment', 'PrepaidExpenseAndOtherAssetsCurrent', 'ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlansIncludingStockOptions', 'ProductWarrantyAccrualPreexistingIncreaseDecrease', 'PropertyPlantAndEquipmentGross', 'PropertyPlantAndEquipmentNet', 'ResearchAndDevelopmentExpense', 'RetainedEarningsAccumulatedDeficit', 'Revenues', 'SellingGeneralAndAdministrativeExpense', 'ShareBasedCompensation', 'StandardProductWarrantyAccrual', 'StandardProductWarrantyAccrualPayments', 'StandardProductWarrantyAccrualWarrantiesIssued', 'StockholdersEquity', 'TaxesPayableCurrent', 'UnrecognizedTaxBenefits', 'current_ratio', 'quick_ratio', 'cash_ratio', 'working_capital', 'accounts_receivable_turnover', 'days_sales_outstanding', 'inventory_turnover', 'days_inventory_outstanding', 'accounts_payable_turnover', 'days_payable_outstanding', 'cash_conversion_cycle', 'gross_profit_margin', 'operating_profit_margin', 'net_profit_margin', 'return_on_assets', 'return_on_equity', 'debt_to_equity_ratio', 'debt_to_assets_ratio', 'interest_coverage_ratio', 'operating_expense_ratio', 'rd_to_revenue_ratio', 'sga_to_revenue_ratio', 'fixed_asset_turnover', 'total_asset_turnover', 'capital_expenditure_ratio', 'compensation_efficiency', 'warranty_reserve_ratio', 'depreciation_rate', 'operating_cash_flow_to_net_income_ratio', 'effective_tax_rate', 'revenue_growth_rate', 'net_income_growth_rate', 'asset_growth_rate', 'accrual_ratio', 'cash_flow_to_revenue_ratio', 'return_on_invested_capital', 'cash_return_on_capital_invested', 'fixed_assets_to_long_term_debt_ratio', 'non_current_asset_turnover', 'quarterly_gross_profit_stability', 'revenue_to_expense_growth_differential', 'quarterly_cash_flow_quality', 'dividend_payout_ratio', 'stock_based_compensation_to_operating_expense_ratio', 'financial_leverage_index', 'asset_coverage_ratio', 'quarterly_margin_expansion', 'asset_utilization_ratio', 'capacity_utilization_proxy', 'altman_z_score', 'dupont_analysis_roe', 'economic_value_added', 'rd_efficiency_ratio', 'innovation_investment_ratio', 'revenue_momentum', 'earnings_momentum', 'quarterly_earnings_quality_index', 'non_operating_items_ratio', 'revenues_qoq_growth', 'revenues_yoy_growth', 'revenues_ttm', 'revenues_acceleration', 'revenues_seasonal_index', 'revenues_moving_avg', 'revenues_run_rate', 'revenues_volatility', 'revenues_seasonal_dependency', 'net_income_qoq_growth', 'net_income_yoy_growth', 'net_income_ttm', 'net_income_acceleration', 'net_income_seasonal_index', 'net_income_moving_avg', 'net_income_run_rate', 'net_income_volatility', 'assets_qoq_growth', 'assets_yoy_growth', 'assets_ttm', 'operating_income_qoq_growth', 'operating_income_yoy_growth', 'operating_income_ttm', 'cash_qoq_growth', 'cash_yoy_growth', 'equity_qoq_growth', 'equity_yoy_growth', 'liabilities_qoq_growth', 'liabilities_yoy_growth', 'quarterly_operating_leverage', 'quarterly_cash_burn_rate', 'revenues_ytd', 'netincomeloss_ytd', 'operatingincomeloss_ytd', 'long_term_revenue_cagr', 'operating_margin_trend']
+2025-10-03 18:01:52,170 - INFO - 
+=== Splitting Data into Train, Validation, and Test Sets (Time-based) ===
+2025-10-03 18:01:52,170 - INFO - Splitting data into train, validation, and test sets using time-based approach...
+2025-10-03 18:01:52,174 - INFO - Test data period: 2024-07-01 00:00:00 to 2025-06-05 00:00:00
+2025-10-03 18:01:52,174 - INFO - Test data shape: (234, 178)
+2025-10-03 18:01:52,178 - INFO - Train+Val data period: 2012-04-02 00:00:00 to 2024-06-28 00:00:00
+2025-10-03 18:01:52,179 - INFO - Train+Val data shape: (3080, 178)
+2025-10-03 18:01:52,187 - INFO - X_train shape: (2464, 167), y_train shape: (2464,)
+2025-10-03 18:01:52,187 - INFO - X_test shape: (234, 167), y_test shape: (234,)
+2025-10-03 18:01:52,187 - INFO - X_val shape: (616, 167), y_val shape: (616,)
+2025-10-03 18:01:52,584 - INFO - Train, test, and validation data saved to datasets/training_data
+2025-10-03 18:01:52,584 - INFO - 8. HYPERPARAMETER TUNING
+2025-10-03 18:01:52,584 - INFO - ================================================================================
+2025-10-03 18:01:52,772 - INFO - 
+Combined HMM, XGBoost, and Barrier Parameters Tuning with Optuna
+2025-10-03 18:01:52,772 - INFO - --------------------------------------------------
+2025-10-03 18:01:52,772 - INFO - Combined HMM, XGBoost, and LSTM Parameters Tuning with Optuna
+2025-10-03 18:01:52,772 - INFO - --------------------------------------------------
+2025-10-03 18:01:52,772 - INFO - TensorFlow available - using XGB-HMM-LSTM hybrid optimization
+2025-10-03 18:01:52,772 - INFO - Starting combined_xgb_hmm_lstm_barrier_parameters optimization with Optuna...
+2025-10-03 18:01:53,102 - INFO - Study 'combined_xgb_hmm_lstm_barrier_parameters' created/loaded with storage: logs/optuna_studies/combined_xgb_hmm_lstm_barrier_parameters.db
+2025-10-03 18:01:53,778 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 18:01:53,779 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 18:01:54,306 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 18:13:33,997 - INFO - Maximum iterations (430) reached
+2025-10-03 18:13:34,004 - INFO - XGB-HMM training completed
+2025-10-03 18:13:34,279 - INFO - Combined Parameters Optimization - Trial 31: New best score 0.8523
+2025-10-03 18:13:35,671 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 18:13:35,671 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 18:13:35,930 - WARNING - Model is not converging.  Current: -4485454.49877188 is not greater than -4485454.498771837. Delta is -4.284083843231201e-08
+2025-10-03 18:13:35,940 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 18:30:01,770 - INFO - Maximum iterations (590) reached
+2025-10-03 18:30:01,779 - INFO - XGB-HMM training completed
+2025-10-03 18:30:03,345 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 18:30:03,345 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 18:30:03,651 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 18:43:31,297 - INFO - Maximum iterations (440) reached
+2025-10-03 18:43:31,303 - INFO - XGB-HMM training completed
+2025-10-03 18:43:33,181 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 18:43:33,181 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 18:43:33,481 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 19:03:25,525 - INFO - Maximum iterations (710) reached
+2025-10-03 19:03:25,530 - INFO - XGB-HMM training completed
+2025-10-03 19:03:25,709 - INFO - Combined Parameters Optimization - Trial 34: New best score 0.8669
+2025-10-03 19:03:26,539 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 19:03:26,540 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 19:03:26,706 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 19:21:15,230 - INFO - Maximum iterations (660) reached
+2025-10-03 19:21:15,234 - INFO - XGB-HMM training completed
+2025-10-03 19:21:16,438 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 19:21:16,439 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 19:21:16,625 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 19:42:16,306 - INFO - Maximum iterations (730) reached
+2025-10-03 19:42:16,310 - INFO - XGB-HMM training completed
+2025-10-03 19:42:16,429 - INFO - Combined Parameters Optimization - Trial 36: New best score 0.8734
+2025-10-03 19:42:17,197 - INFO - Adjusting n_states from 4 to 3 to match number of unique classes
+2025-10-03 19:42:17,197 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 19:42:17,197 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 19:42:17,348 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 19:52:44,550 - INFO - Maximum iterations (360) reached
+2025-10-03 19:52:44,557 - INFO - XGB-HMM training completed
+2025-10-03 19:52:47,071 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 19:52:47,071 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 19:52:47,392 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 20:00:42,481 - INFO - Converged after 290 iterations
+2025-10-03 20:00:42,487 - INFO - XGB-HMM training completed
+2025-10-03 20:00:43,544 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 20:00:43,545 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 20:00:43,703 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 20:18:25,979 - INFO - Maximum iterations (610) reached
+2025-10-03 20:18:25,987 - INFO - XGB-HMM training completed
+2025-10-03 20:18:26,722 - INFO - Adjusting n_states from 4 to 2 to match number of unique classes
+2025-10-03 20:18:26,722 - INFO - Starting XGB-HMM training with 2 states for 2 classes...
+2025-10-03 20:18:26,723 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 20:18:26,814 - WARNING - Model is not converging.  Current: -4632818.267587424 is not greater than -4632818.26758657. Delta is -8.540228009223938e-07
+2025-10-03 20:18:26,822 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 20:19:17,778 - INFO - Converged after 71 iterations
+2025-10-03 20:19:17,783 - INFO - XGB-HMM training completed
+2025-10-03 20:19:17,847 - INFO - 
+Combined hyperparameter tuning completed in 8245.07 seconds
+2025-10-03 20:19:17,847 - INFO - Best combined validation accuracy: 0.8815
+2025-10-03 20:19:17,847 - INFO - Best trial number: 26
+2025-10-03 20:19:17,848 - INFO - 
+Best HMM Parameters:
+2025-10-03 20:19:17,848 - INFO -   n_states: 3
+2025-10-03 20:19:17,848 - INFO -   max_iter: 700
+2025-10-03 20:19:17,848 - INFO -   tol: 8.900876447967033e-06
+2025-10-03 20:19:17,848 - INFO - 
+Best XGBoost Parameters:
+2025-10-03 20:19:17,848 - INFO -   n_estimators: 100
+2025-10-03 20:19:17,848 - INFO -   max_depth: 8
+2025-10-03 20:19:17,848 - INFO -   learning_rate: 0.06397033011773137
+2025-10-03 20:19:17,848 - INFO -   subsample: 0.9
+2025-10-03 20:19:17,848 - INFO -   colsample_bytree: 0.9
+2025-10-03 20:19:17,848 - INFO -   reg_alpha: 8.1
+2025-10-03 20:19:17,848 - INFO -   reg_lambda: 1.9
+2025-10-03 20:19:17,848 - INFO -   min_child_weight: 7
+2025-10-03 20:19:17,848 - INFO -   gamma: 4.4
+2025-10-03 20:19:17,848 - INFO - 
+Best LSTM Parameters:
+2025-10-03 20:19:17,848 - INFO -   sequence_length: 400
+2025-10-03 20:19:17,848 - INFO -   lstm_units: 432
+2025-10-03 20:19:17,848 - INFO -   dropout_rate: 0.32
+2025-10-03 20:19:17,848 - INFO -   learning_rate: 0.0005655332644067792
+2025-10-03 20:19:17,848 - INFO - 
+Best Ensemble Weights: XGB=0.20, HMM=0.28, LSTM=0.52
+2025-10-03 20:19:17,848 - INFO - 
+Best Barrier Parameters:
+2025-10-03 20:19:17,848 - INFO -   volatility_window: 50
+2025-10-03 20:19:17,848 - INFO -   upper_barrier_multiplier: 2.4000000000000004
+2025-10-03 20:19:17,848 - INFO -   lower_barrier_multiplier: 2.4000000000000004
+2025-10-03 20:19:17,848 - INFO -   time_barrier_days: 35
+2025-10-03 20:19:17,878 - INFO - Optimization summary saved to: logs/xgb_results/combined_optimization_summary.pkl
+2025-10-03 20:19:17,878 - INFO - 
+Using best parameters from combined tuning for final model training...
+2025-10-03 20:19:17,878 - INFO - Applying triple barrier labeling with optimized parameters...
+2025-10-03 20:19:18,494 - INFO - Updated merged data with optimized barrier parameters: (3294, 178)
+2025-10-03 20:19:18,494 - INFO - 
+9. Training XGB-HMM Hybrid Model
+2025-10-03 20:19:18,494 - INFO - --------------------------------------------------
+2025-10-03 20:19:18,494 - INFO - Using existing triple barrier data for XGB-HMM training...
+2025-10-03 20:19:18,494 - INFO - Triple barrier data already available: 3314 samples
+2025-10-03 20:19:18,494 - INFO - Proceeding directly to XGB-HMM training with existing merged data...
+2025-10-03 20:19:18,496 - INFO - Final dataset shape: (3294, 178)
+2025-10-03 20:19:18,496 - INFO - Label distribution:
+2025-10-03 20:19:18,497 - INFO - label
+-1    1397
+ 0      17
+ 1    1880
+Name: count, dtype: int64
+2025-10-03 20:19:18,500 - INFO - Final test data period: 2024-07-01 00:00:00 to 2025-05-07 00:00:00
+2025-10-03 20:19:18,500 - INFO - Final test data shape: (214, 178)
+2025-10-03 20:19:18,503 - INFO - Final train+val data period: 2012-04-02 00:00:00 to 2024-06-28 00:00:00
+2025-10-03 20:19:18,503 - INFO - Final train+val data shape: (3080, 178)
+2025-10-03 20:19:18,506 - INFO - 
+Final data splits:
+2025-10-03 20:19:18,506 - INFO - Training set: 2464 samples
+2025-10-03 20:19:18,506 - INFO - Validation set: 616 samples
+2025-10-03 20:19:18,506 - INFO - Test set: 214 samples
+2025-10-03 20:19:18,506 - INFO - 
+Final label mapping: {np.int64(-1): 0, np.int64(0): 1, np.int64(1): 2}
+2025-10-03 20:19:18,507 - INFO - Number of classes: 3
+2025-10-03 20:19:18,507 - INFO - 
+=== Applying Feature Selection ===
+2025-10-03 20:19:18,507 - INFO - Initializing feature selection process...
+2025-10-03 20:19:18,507 - INFO - Original number of features: 167
+2025-10-03 20:19:18,507 - INFO - Applying ensemble feature selection...
+2025-10-03 20:19:18,507 - INFO - Performing ensemble feature selection...
+2025-10-03 20:19:18,508 - INFO - Performing univariate feature selection with k=83 features...
+2025-10-03 20:19:18,527 - INFO - Univariate selection completed. Selected 83 features.
+2025-10-03 20:19:18,527 - INFO - Performing mutual information feature selection with k=83 features...
+2025-10-03 20:19:19,213 - INFO - Mutual information selection completed. Selected 83 features.
+2025-10-03 20:19:19,213 - INFO - Performing RFE selection with n_features=83...
+2025-10-03 20:19:37,929 - INFO - RFE selection completed. Selected 83 features.
+2025-10-03 20:19:37,930 - INFO - Performing feature importance selection with n_features=83...
+2025-10-03 20:19:38,935 - INFO - Feature importance selection completed. Selected 83 features.
+2025-10-03 20:19:38,936 - INFO - Ensemble selection completed. Selected 112 features with 2+ votes.
+2025-10-03 20:19:38,938 - INFO - Selected 112 features out of 167
+2025-10-03 20:19:38,938 - INFO - Feature reduction: 32.93%
+2025-10-03 20:19:38,940 - INFO - 
+Feature Selection Summary:
+2025-10-03 20:19:38,940 - INFO - Applying feature selection to training, validation, and test sets...
+2025-10-03 20:19:38,943 - INFO - Selected feature names (top 10): ['entry_price', 'upper_barrier', 'lower_barrier', 'open', 'high', 'low', 'close', 'Histogram', 'MACD', 'Signal']
+2025-10-03 20:19:38,943 - INFO - ... and 102 more features
+2025-10-03 20:19:38,945 - INFO - Feature selection summary saved to: logs/xgb_results/feature_selection_summary.pkl
+2025-10-03 20:19:38,945 - INFO - 
+=== Training XGB-HMM-LSTM Triple Hybrid Model with Selected Features ===
+2025-10-03 20:19:38,945 - INFO - Initializing XGB-HMM-LSTM model with optimal parameters and selected features...
+2025-10-03 20:19:38,945 - INFO - XGB-HMM-LSTM Model initialized with optimized parameters
+2025-10-03 20:19:38,945 - INFO -   n_states: 3
+2025-10-03 20:19:38,945 - INFO -   max_iter: 700
+2025-10-03 20:19:38,945 - INFO -   tol: 8.900876447967033e-06
+2025-10-03 20:19:38,945 - INFO -   sequence_length: 400
+2025-10-03 20:19:38,945 - INFO -   lstm_units: 432
+2025-10-03 20:19:38,945 - INFO -   ensemble_weights: [0.2, 0.28, 0.52]
+2025-10-03 20:19:38,945 - INFO -   TensorFlow available: True
+2025-10-03 20:19:38,945 - INFO - Starting XGB-HMM-LSTM training with EM algorithm...
+2025-10-03 20:19:38,946 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-03 20:19:38,946 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-03 20:19:39,057 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-03 20:38:40,148 - INFO - Maximum iterations (700) reached
+2025-10-03 20:38:40,152 - INFO - XGB-HMM training completed
+2025-10-03 20:38:40,153 - INFO - XGB-HMM-LSTM training completed in 1141.21 seconds
+2025-10-03 20:38:40,153 - WARNING - LSTM model not available, using XGB-HMM only
+2025-10-03 20:38:40,153 - INFO - 
+=== XGB-HMM-LSTM Model Detailed Evaluation ===
+2025-10-03 20:38:40,546 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 20:38:40,546 - INFO -   Log Likelihood: -1701.0828
+2025-10-03 20:38:40,546 - INFO -   Perplexity: 1.9945
+2025-10-03 20:38:40,546 - INFO -   State Sequence Accuracy: 0.9761
+2025-10-03 20:38:40,546 - INFO -   Emission Accuracy: 0.9988
+2025-10-03 20:38:40,546 - INFO -   Avg Log Likelihood per Sample: -0.6904
+2025-10-03 20:38:40,546 - INFO - 
+Training Set XGB-HMM-LSTM Evaluation:
+2025-10-03 20:38:40,546 - INFO -   log_likelihood: -1701.0828
+2025-10-03 20:38:40,546 - INFO -   perplexity: 1.9945
+2025-10-03 20:38:40,546 - INFO -   state_sequence_accuracy: 0.9761
+2025-10-03 20:38:40,546 - INFO -   emission_accuracy: 0.9988
+2025-10-03 20:38:40,546 - INFO -   avg_log_likelihood_per_sample: -0.6904
+2025-10-03 20:38:40,643 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 20:38:40,643 - INFO -   Log Likelihood: -413.2482
+2025-10-03 20:38:40,643 - INFO -   Perplexity: 1.9559
+2025-10-03 20:38:40,643 - INFO -   State Sequence Accuracy: 0.8977
+2025-10-03 20:38:40,643 - INFO -   Emission Accuracy: 0.9010
+2025-10-03 20:38:40,643 - INFO -   Avg Log Likelihood per Sample: -0.6709
+2025-10-03 20:38:40,643 - INFO - 
+Validation Set XGB-HMM-LSTM Evaluation:
+2025-10-03 20:38:40,643 - INFO -   log_likelihood: -413.2482
+2025-10-03 20:38:40,643 - INFO -   perplexity: 1.9559
+2025-10-03 20:38:40,643 - INFO -   state_sequence_accuracy: 0.8977
+2025-10-03 20:38:40,643 - INFO -   emission_accuracy: 0.9010
+2025-10-03 20:38:40,643 - INFO -   avg_log_likelihood_per_sample: -0.6709
+2025-10-03 20:38:40,679 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 20:38:40,679 - INFO -   Log Likelihood: -181.5016
+2025-10-03 20:38:40,679 - INFO -   Perplexity: 2.3353
+2025-10-03 20:38:40,679 - INFO -   State Sequence Accuracy: 0.5654
+2025-10-03 20:38:40,679 - INFO -   Emission Accuracy: 0.5841
+2025-10-03 20:38:40,679 - INFO -   Avg Log Likelihood per Sample: -0.8481
+2025-10-03 20:38:40,679 - INFO - 
+Test Set XGB-HMM-LSTM Evaluation:
+2025-10-03 20:38:40,679 - INFO -   log_likelihood: -181.5016
+2025-10-03 20:38:40,679 - INFO -   perplexity: 2.3353
+2025-10-03 20:38:40,679 - INFO -   state_sequence_accuracy: 0.5654
+2025-10-03 20:38:40,679 - INFO -   emission_accuracy: 0.5841
+2025-10-03 20:38:40,679 - INFO -   avg_log_likelihood_per_sample: -0.8481
+2025-10-03 20:38:40,679 - INFO - 
+=== State Transition Analysis ===
+2025-10-03 20:38:40,683 - INFO - State Transition Analysis:
+2025-10-03 20:38:40,685 - INFO -   State Distribution: [0.6728972 0.        0.3271028]
+2025-10-03 20:38:40,685 - INFO -   Most Frequent State: 0
+2025-10-03 20:38:40,685 - INFO -   Least Frequent State: 1
+2025-10-03 20:38:40,685 - INFO - 
+Learned Transition Matrix:
+2025-10-03 20:38:40,685 - INFO - [[3.73254752e-01 0.00000000e+00 6.26745248e-01]
+ [1.00000000e+00 0.00000000e+00 2.41411485e-14]
+ [4.16796628e-01 0.00000000e+00 5.83203372e-01]]
+2025-10-03 20:38:40,687 - INFO - 
+Empirical Transition Matrix:
+2025-10-03 20:38:40,687 - INFO - [[0.9020979 0.        0.0979021]
+ [0.        0.        0.       ]
+ [0.2       0.        0.8      ]]
+2025-10-03 20:38:40,687 - INFO - 
+Evaluating XGB-HMM-LSTM model on all datasets...
+2025-10-03 20:38:40,862 - WARNING - ROC AUC calculation skipped due to class mismatch. Test classes: 2, Proba shape: (214, 3)
+2025-10-03 20:38:40,862 - INFO - 
+============================================================
+2025-10-03 20:38:40,862 - INFO - XGB-HMM-LSTM HYBRID MODEL PERFORMANCE
+2025-10-03 20:38:40,862 - INFO - ============================================================
+2025-10-03 20:38:40,862 - INFO - 
+Training Set Performance:
+2025-10-03 20:38:40,862 - INFO - Accuracy: 0.9761
+2025-10-03 20:38:40,862 - INFO - Precision: 0.9704
+2025-10-03 20:38:40,862 - INFO - Recall: 0.9761
+2025-10-03 20:38:40,862 - INFO - F1-Score: 0.9729
+2025-10-03 20:38:40,862 - INFO - ROC AUC: 0.8300
+2025-10-03 20:38:40,862 - INFO - 
+Validation Set Performance:
+2025-10-03 20:38:40,862 - INFO - Accuracy: 0.8977
+2025-10-03 20:38:40,862 - INFO - Precision: 0.8982
+2025-10-03 20:38:40,862 - INFO - Recall: 0.8977
+2025-10-03 20:38:40,863 - INFO - F1-Score: 0.8959
+2025-10-03 20:38:40,863 - INFO - ROC AUC: 0.8003
+2025-10-03 20:38:40,863 - INFO - 
+Test Set Performance:
+2025-10-03 20:38:40,863 - INFO - Accuracy: 0.5654
+2025-10-03 20:38:40,863 - INFO - Precision: 0.6000
+2025-10-03 20:38:40,863 - INFO - Recall: 0.5654
+2025-10-03 20:38:40,863 - INFO - F1-Score: 0.5532
+2025-10-03 20:38:40,863 - INFO - ROC AUC: 0.5654
+2025-10-03 20:38:40,863 - INFO - 
+Test Set Confusion Matrix:
+2025-10-03 20:38:40,865 - INFO - [[74 23]
+ [70 47]]
+2025-10-03 20:38:40,865 - INFO - 
+Test Set Classification Report:
+2025-10-03 20:38:40,865 - INFO - Classes in test data: [np.int64(0), np.int64(2)]
+2025-10-03 20:38:40,865 - INFO - Classes predicted by model: [np.int64(0), np.int64(2)]
+2025-10-03 20:38:40,865 - INFO - All classes for classification report: [np.int64(0), np.int64(2)]
+2025-10-03 20:38:40,868 - INFO -               precision    recall  f1-score   support
+
+          -1       0.51      0.76      0.61        97
+           1       0.67      0.40      0.50       117
+
+    accuracy                           0.57       214
+   macro avg       0.59      0.58      0.56       214
+weighted avg       0.60      0.57      0.55       214
+
+2025-10-03 20:38:40,868 - INFO - 
+============================================================
+2025-10-03 20:38:40,868 - INFO - PERFORMANCE COMPARISON
+2025-10-03 20:38:40,868 - INFO - ============================================================
+2025-10-03 20:38:40,871 - INFO -       Dataset  Accuracy  Precision  Recall  F1-Score  ROC AUC
+0    Training    0.9761     0.9704  0.9761    0.9729   0.8300
+1  Validation    0.8977     0.8982  0.8977    0.8959   0.8003
+2        Test    0.5654     0.6000  0.5654    0.5532   0.5654
+2025-10-03 20:38:40,967 - INFO - 
+Final performance comparison saved to: logs/xgb_results/final_performance_comparison.csv
+2025-10-03 20:38:40,983 - INFO - XGB-HMM-LSTM model saved to: logs/xgb_models/xgb_hmm_lstm_model.pkl
+2025-10-03 20:38:40,985 - INFO - Final test predictions saved to: logs/xgb_results/final_test_predictions.csv
+2025-10-03 20:38:40,985 - INFO - 
+============================================================
+2025-10-03 20:38:40,985 - INFO - XGB-HMM-LSTM HYPERPARAMETER SUMMARY
+2025-10-03 20:38:40,985 - INFO - ============================================================
+2025-10-03 20:38:40,985 - INFO - 
+XGB-HMM-LSTM Model Parameters:
+2025-10-03 20:38:40,985 - INFO -   n_states: 3
+2025-10-03 20:38:40,985 - INFO -   max_iter: 700
+2025-10-03 20:38:40,985 - INFO -   tolerance: 8.900876447967033e-06
+2025-10-03 20:38:40,985 - INFO -   random_state: 42
+2025-10-03 20:38:40,986 - INFO - 
+XGB-HMM-LSTM Training Summary:
+2025-10-03 20:38:40,986 - INFO -   Training time: 1141.21 seconds
+2025-10-03 20:38:40,986 - INFO -   Convergence achieved: False
+2025-10-03 20:38:40,986 - INFO -   Final log-likelihood: N/A
+2025-10-03 20:38:40,986 - INFO - 
+Hybrid XGB-HMM vs Original XGBoost Performance:
+2025-10-03 20:38:40,986 - INFO - Original XGBoost Test Accuracy: ~0.45 (from previous runs)
+2025-10-03 20:38:40,986 - INFO - Hybrid XGB-HMM Test Accuracy: 0.5654
+2025-10-03 20:38:40,986 - INFO - Performance Improvement: 25.65%
+2025-10-03 20:38:40,986 - INFO - 
+Hybrid XGB-HMM Model Generalization:
+2025-10-03 20:38:40,986 - INFO - Training Accuracy: 0.9761
+2025-10-03 20:38:40,986 - INFO - Validation Accuracy: 0.8977
+2025-10-03 20:38:40,986 - INFO - Test Accuracy: 0.5654
+2025-10-03 20:38:40,986 - INFO - Train-Val Gap: 0.0783
+2025-10-03 20:38:40,986 - INFO - Train-Test Gap: 0.4106
+2025-10-03 20:38:40,986 - INFO - 
+=== Feature Selection Impact Analysis ===
+2025-10-03 20:38:40,986 - INFO - Original features: 167
+2025-10-03 20:38:40,986 - INFO - Selected features: 112
+2025-10-03 20:38:40,986 - INFO - Feature reduction: 32.93%
+2025-10-03 20:38:40,986 - INFO - Model performance maintained with 67.07% of original features
+2025-10-03 20:38:40,987 - INFO - 
+================================================================================
+2025-10-03 20:38:40,987 - INFO - XGB-HMM-LSTM HYBRID MODEL WITH FEATURE SELECTION COMPLETED SUCCESSFULLY!
+2025-10-03 20:38:40,987 - INFO - ================================================================================

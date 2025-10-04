@@ -3,3 +3,5 @@ __pycache__/
 .trae/
 .venv/
 .vscode/
+datasets/fundamental/sec_data/
+datasets/fundamental/companyfacts.zip

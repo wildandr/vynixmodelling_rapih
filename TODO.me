@@ -1,0 +1,32 @@
+Saya telah membuat skrip berisi data pipeline pada xgb_hmm_lstm.py berisi feature selection, model components,
+dan optimization & evaluation. saya perlu melakukan penyesuaian script untuk bisa
+lebih modular dan scalable, serta bisa menangani lebih banyak data berdasarkan
+ticker target saya: [TSLA,AAPL,GOOGL,NVDA,INTC,IBM]
+
+## TODO 1. optimalisasi proses Data Pipeline, dan Feature Selection.
+
+1. script telah saya pisah menjadi file preprocessing.py.
+2. Gunakan parameter untuk mengatur berbagai aspek skrip, seperti ticker target.
+3. Implementasikan logging untuk melacak alur eksekusi dan mengidentifikasi
+   masalah yang mungkin terjadi. log disimpan di direktori logs/main/preprocessing.
+4. Output tiap proses yang berupa file tertentu akan disimpan berdasarkan folder dengan nama ticker.
+5. Prosesnya dilakukan per-ticker, dengan hasil yang dapat berbeda-beda tiap kolom nantinya,
+dan perlu untuk bisa tetap fleksible terhadap semua kemungkinan, tanpa ada false back yang tidak perlu.
+6. lakukan pengujian script dan sesuaikan outputnya.
+
+Note TODO 1:
+- 
+
+## TODO 2. optimalisasi proses Model Components, Optimization & Evaluation.
+1. script telah saya pisah menjadi file training_tuning.py.
+2. Identifikasi import yang belum ada pada script lalu mengisinya.
+3. Gunakan parameter untuk mengatur berbagai aspek skrip, seperti ticker target.
+4. Implementasikan logging yang cukup untuk melacak alur eksekusi dan mengidentifikasi
+   masalah yang mungkin terjadi. hapus logging yang tidak lagi diperlukan.
+5. lakukan pengujian script dan sesuaikan outputnya,
+
+## TODO 3. Integrasi End to End.
+1. Integrasikan proses tersebut menggunakan main.py.
+
+# Note
+1. log akan disimpan 

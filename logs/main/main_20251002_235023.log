@@ -274,3 +274,70 @@ Feature Selection Summary:
 2025-10-02 23:52:26,829 - INFO - Converged after 8 iterations
 2025-10-02 23:52:26,829 - INFO - XGB-HMM training completed
 2025-10-02 23:52:26,834 - INFO - Training LSTM model with sequence length 390
+2025-10-03 00:09:44,995 - INFO - LSTM training completed. Final val_accuracy: 0.4337
+2025-10-03 00:09:45,008 - INFO - XGB-HMM-LSTM training completed in 1044.62 seconds
+2025-10-03 00:09:45,008 - INFO - LSTM model successfully trained and integrated
+2025-10-03 00:09:45,008 - INFO - Ensemble weights used: XGB=0.34, HMM=0.45, LSTM=0.21
+2025-10-03 00:09:45,008 - INFO - 
+=== XGB-HMM-LSTM Model Detailed Evaluation ===
+2025-10-03 00:09:45,432 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 00:09:45,432 - INFO -   Log Likelihood: -1612.8203
+2025-10-03 00:09:45,432 - INFO -   Perplexity: 1.9243
+2025-10-03 00:09:45,432 - INFO -   State Sequence Accuracy: 0.5572
+2025-10-03 00:09:45,432 - INFO -   Emission Accuracy: 0.7699
+2025-10-03 00:09:45,432 - INFO -   Avg Log Likelihood per Sample: -0.6546
+2025-10-03 00:10:08,394 - INFO - 
+Training Set XGB-HMM-LSTM Evaluation:
+2025-10-03 00:10:08,395 - INFO -   log_likelihood: -1612.8203
+2025-10-03 00:10:08,395 - INFO -   perplexity: 1.9243
+2025-10-03 00:10:08,395 - INFO -   state_sequence_accuracy: 0.5572
+2025-10-03 00:10:08,395 - INFO -   emission_accuracy: 0.7699
+2025-10-03 00:10:08,395 - INFO -   avg_log_likelihood_per_sample: -0.6546
+2025-10-03 00:10:08,395 - INFO -   hybrid_accuracy: 0.4452
+2025-10-03 00:10:08,486 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 00:10:08,486 - INFO -   Log Likelihood: -392.8563
+2025-10-03 00:10:08,486 - INFO -   Perplexity: 1.8922
+2025-10-03 00:10:08,486 - INFO -   State Sequence Accuracy: 0.5893
+2025-10-03 00:10:08,486 - INFO -   Emission Accuracy: 0.7549
+2025-10-03 00:10:08,486 - INFO -   Avg Log Likelihood per Sample: -0.6378
+2025-10-03 00:10:10,507 - INFO - 
+Validation Set XGB-HMM-LSTM Evaluation:
+2025-10-03 00:10:10,507 - INFO -   log_likelihood: -392.8563
+2025-10-03 00:10:10,507 - INFO -   perplexity: 1.8922
+2025-10-03 00:10:10,507 - INFO -   state_sequence_accuracy: 0.5893
+2025-10-03 00:10:10,507 - INFO -   emission_accuracy: 0.7549
+2025-10-03 00:10:10,507 - INFO -   avg_log_likelihood_per_sample: -0.6378
+2025-10-03 00:10:10,507 - INFO -   hybrid_accuracy: 0.5227
+2025-10-03 00:10:10,541 - INFO - XGB-HMM Evaluation Metrics:
+2025-10-03 00:10:10,541 - INFO -   Log Likelihood: -206.5792
+2025-10-03 00:10:10,541 - INFO -   Perplexity: 2.6256
+2025-10-03 00:10:10,541 - INFO -   State Sequence Accuracy: 0.5187
+2025-10-03 00:10:10,541 - INFO -   Emission Accuracy: 0.6729
+2025-10-03 00:10:10,541 - INFO -   Avg Log Likelihood per Sample: -0.9653
+2025-10-03 00:10:10,550 - WARNING - Not enough samples (214) for sequence length (390)
+2025-10-03 00:10:10,550 - INFO - 
+Test Set XGB-HMM-LSTM Evaluation:
+2025-10-03 00:10:10,550 - INFO -   log_likelihood: -206.5792
+2025-10-03 00:10:10,551 - INFO -   perplexity: 2.6256
+2025-10-03 00:10:10,551 - INFO -   state_sequence_accuracy: 0.5187
+2025-10-03 00:10:10,551 - INFO -   emission_accuracy: 0.6729
+2025-10-03 00:10:10,551 - INFO -   avg_log_likelihood_per_sample: -0.9653
+2025-10-03 00:10:10,551 - INFO -   hybrid_accuracy: 0.5187
+2025-10-03 00:10:10,551 - INFO - 
+=== State Transition Analysis ===
+2025-10-03 00:10:10,554 - INFO - State Transition Analysis:
+2025-10-03 00:10:10,555 - INFO -   State Distribution: [0.0046729  0.0046729  0.99065421]
+2025-10-03 00:10:10,555 - INFO -   Most Frequent State: 2
+2025-10-03 00:10:10,555 - INFO -   Least Frequent State: 0
+2025-10-03 00:10:10,555 - INFO - 
+Learned Transition Matrix:
+2025-10-03 00:10:10,555 - INFO - [[5.53867168e-28 0.00000000e+00 1.00000000e+00]
+ [1.00000000e+00 0.00000000e+00 1.54672542e-46]
+ [8.37999702e-36 0.00000000e+00 1.00000000e+00]]
+2025-10-03 00:10:10,556 - INFO - 
+Empirical Transition Matrix:
+2025-10-03 00:10:10,556 - INFO - [[0.         0.         0.99999999]
+ [0.99999999 0.         0.        ]
+ [0.         0.         1.        ]]
+2025-10-03 00:10:10,556 - INFO - 
+Evaluating XGB-HMM-LSTM model on all datasets...
