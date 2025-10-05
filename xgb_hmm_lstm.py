@@ -22,6 +22,18 @@ warnings.filterwarnings('ignore')
 
 try:
     import tensorflow as tf
+    import os as os_tf
+    os_tf.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+    
+    physical_devices = tf.config.list_physical_devices('GPU')
+    if len(physical_devices) == 0:
+        logging.warning("No GPU found, using CPU for LSTM training")
+        tf.config.set_visible_devices([], 'GPU')
+    else:
+        logging.info(f"Found {len(physical_devices)} GPU(s)")
+        for device in physical_devices:
+            tf.config.experimental.set_memory_growth(device, True)
+    
     from tensorflow.keras.models import Sequential, Model
     from tensorflow.keras.layers import LSTM, Dense, Dropout, BatchNormalization, Input, Concatenate
     from tensorflow.keras.optimizers import Adam
@@ -585,6 +597,10 @@ class XGBHMMLSTMModel:
         self.gmm_hmm = None
         self.xgb_model = None
         self.lstm_model = None
+        self.scaler = None
+        self.n_features = None
+        self.n_classes = None
+        self.lstm_history = None
         self.transition_matrix = None
         self.start_prob = None
         
@@ -821,6 +837,215 @@ class XGBHMMLSTMModel:
             }
         
         logging.info("XGB-HMM training completed")
+
+        if TENSORFLOW_AVAILABLE:
+            logging.info("Training LSTM model...")
+            self._train_lstm_model(X, y)
+        else:
+            logging.warning("TensorFlow not available, skipping LSTM training")
+        
+        return self
+    
+    def _train_lstm_model(self, X, y):
+        try:
+            logging.info(f"Preparing sequences for LSTM with sequence_length={self.sequence_length}")
+            
+            if hasattr(X, 'values'):
+                X_array = X.values
+            else:
+                X_array = np.array(X)
+            
+            if hasattr(y, 'values'):
+                y_array = y.values
+            else:
+                y_array = np.array(y)
+            
+            X_sequences = []
+            y_sequences = []
+            
+            n_samples = len(X_array)
+            
+            if n_samples < self.sequence_length:
+                logging.warning(f"Not enough samples ({n_samples}) for LSTM training with sequence_length={self.sequence_length}")
+                self.lstm_model = None
+                return
+            
+            for i in range(self.sequence_length, n_samples):
+                X_sequences.append(X_array[i-self.sequence_length:i])
+                y_sequences.append(y_array[i])
+            
+            X_sequences = np.array(X_sequences)
+            y_sequences = np.array(y_sequences)
+            
+            logging.info(f"Created {len(X_sequences)} sequences for LSTM training")
+            logging.info(f"Sequence shape: {X_sequences.shape}")
+            
+            n_samples_seq, seq_len, n_features = X_sequences.shape
+            X_flat = X_sequences.reshape(-1, n_features)
+            
+            self.scaler = MinMaxScaler(feature_range=(0, 1))
+            X_scaled = self.scaler.fit_transform(X_flat)
+            X_sequences_scaled = X_scaled.reshape(n_samples_seq, seq_len, n_features)
+            
+            X_sequences_scaled = np.clip(X_sequences_scaled, -10, 10)
+            
+            X_sequences_scaled = np.nan_to_num(X_sequences_scaled, nan=0.0, posinf=10.0, neginf=-10.0)
+            
+            unique_classes = np.unique(y_sequences)
+            n_classes = len(unique_classes)
+            
+            logging.info(f"Number of classes for LSTM: {n_classes}")
+            logging.info(f"Data range after scaling: [{X_sequences_scaled.min():.4f}, {X_sequences_scaled.max():.4f}]")
+            
+            input_shape = (self.sequence_length, n_features)
+            
+            from tensorflow.keras.regularizers import l2
+            from tensorflow.keras.callbacks import TerminateOnNaN
+            
+            model = Sequential([
+                LSTM(self.lstm_units, return_sequences=True, input_shape=input_shape,
+                     dropout=self.dropout_rate, kernel_regularizer=l2(0.001)),
+                BatchNormalization(),
+                
+                LSTM(self.lstm_units // 2, return_sequences=False,
+                     dropout=self.dropout_rate, kernel_regularizer=l2(0.001)),
+                BatchNormalization(),
+                
+                Dense(self.lstm_units // 4, activation='relu', kernel_regularizer=l2(0.01)),
+                Dropout(self.dropout_rate),
+                
+                Dense(n_classes, activation='softmax')
+            ])
+            
+            optimizer = Adam(learning_rate=self.learning_rate, clipnorm=1.0)
+            model.compile(
+                optimizer=optimizer,
+                loss='sparse_categorical_crossentropy',
+                metrics=['accuracy']
+            )
+            
+            logging.info(f"LSTM model architecture:")
+            model.summary(print_fn=lambda x: logging.info(x))
+            
+            early_stopping = EarlyStopping(
+                monitor='val_loss',
+                patience=15,
+                restore_best_weights=True,
+                verbose=1
+            )
+            
+            reduce_lr = ReduceLROnPlateau(
+                monitor='val_loss',
+                factor=0.5,
+                patience=7,
+                min_lr=1e-7,
+                verbose=1
+            )
+            
+            nan_termination = TerminateOnNaN()
+            
+            logging.info("Starting LSTM training...")
+            history = model.fit(
+                X_sequences_scaled, y_sequences,
+                batch_size=64,
+                epochs=100,
+                validation_split=0.2,
+                callbacks=[early_stopping, reduce_lr, nan_termination],
+                verbose=1
+            )
+            
+            self.lstm_model = model
+            self.lstm_history = history
+            self.n_features = n_features
+            self.n_classes = n_classes
+            
+            final_loss = history.history['loss'][-1]
+            final_val_loss = history.history['val_loss'][-1]
+            final_acc = history.history['accuracy'][-1]
+            final_val_acc = history.history['val_accuracy'][-1]
+            
+            if np.isnan(final_loss) or np.isnan(final_val_loss):
+                logging.error("LSTM training failed with NaN loss!")
+                logging.error("Disabling LSTM in ensemble - using XGB-HMM only")
+                self.lstm_model = None
+                xgb_weight = self.ensemble_weights[0]
+                hmm_weight = self.ensemble_weights[1]
+                total = xgb_weight + hmm_weight
+                self.ensemble_weights = [xgb_weight / total, hmm_weight / total, 0.0]
+                logging.warning(f"Adjusted ensemble weights to XGB={self.ensemble_weights[0]:.2f}, HMM={self.ensemble_weights[1]:.2f}, LSTM=0.00")
+            else:
+                logging.info(f"LSTM training completed successfully")
+                logging.info(f"  Final training loss: {final_loss:.4f}")
+                logging.info(f"  Final validation loss: {final_val_loss:.4f}")
+                logging.info(f"  Final training accuracy: {final_acc:.4f}")
+                logging.info(f"  Final validation accuracy: {final_val_acc:.4f}")
+            
+        except Exception as e:
+            logging.error(f"Error training LSTM model: {str(e)}")
+            logging.exception("LSTM training error details:")
+            self.lstm_model = None
+            xgb_weight = self.ensemble_weights[0]
+            hmm_weight = self.ensemble_weights[1]
+            total = xgb_weight + hmm_weight
+            self.ensemble_weights = [xgb_weight / total, hmm_weight / total, 0.0]
+            logging.warning(f"LSTM disabled due to error. Adjusted ensemble weights to XGB={self.ensemble_weights[0]:.2f}, HMM={self.ensemble_weights[1]:.2f}, LSTM=0.00")
+    
+    def _prepare_lstm_sequences(self, X):
+        if self.lstm_model is None or not hasattr(self, 'scaler'):
+            return None
+        
+        try:
+            if hasattr(X, 'values'):
+                X_array = X.values
+            else:
+                X_array = np.array(X)
+            
+            n_samples = len(X_array)
+            
+            if n_samples < self.sequence_length:
+                padding = np.repeat(X_array[0:1], self.sequence_length - n_samples, axis=0)
+                X_array = np.vstack([padding, X_array])
+                n_samples = len(X_array)
+            
+            X_sequences = []
+            for i in range(self.sequence_length, n_samples + 1):
+                X_sequences.append(X_array[i-self.sequence_length:i])
+            
+            if len(X_sequences) == 0:
+                return None
+            
+            X_sequences = np.array(X_sequences)
+            
+            n_samples_seq, seq_len, n_features = X_sequences.shape
+            X_flat = X_sequences.reshape(-1, n_features)
+            X_scaled = self.scaler.transform(X_flat)
+            X_sequences_scaled = X_scaled.reshape(n_samples_seq, seq_len, n_features)
+            
+            return X_sequences_scaled
+        except Exception as e:
+            logging.error(f"Error preparing LSTM sequences: {str(e)}")
+            return None
+    
+    def _get_lstm_predictions(self, X):
+        if self.lstm_model is None:
+            return None
+        
+        try:
+            X_sequences = self._prepare_lstm_sequences(X)
+            if X_sequences is None:
+                return None
+            
+            lstm_proba = self.lstm_model.predict(X_sequences, verbose=0)
+            
+            n_padding = len(X) - len(lstm_proba)
+            if n_padding > 0:
+                padding_proba = np.repeat(lstm_proba[0:1], n_padding, axis=0)
+                lstm_proba = np.vstack([padding_proba, lstm_proba])
+            
+            return lstm_proba
+        except Exception as e:
+            logging.error(f"Error getting LSTM predictions: {str(e)}")
+            return None
         return self
     
     def predict(self, X):
@@ -1767,7 +1992,7 @@ combined_callback = EnhancedProgressCallback(
 
 combined_study.optimize(
     objective_function, 
-    n_trials=10,
+    n_trials=1,
     callbacks=[combined_callback],
     show_progress_bar=True
 )

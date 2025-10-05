@@ -1,0 +1,152 @@
+2025-10-04 17:40:51,244 - INFO - Original dataframe shape: (3816, 14)
+2025-10-04 17:40:51,245 - INFO - Total rows in df without NaN or null values: 3783
+2025-10-04 17:40:51,411 - INFO - Kolom dengan data lengkap (>= 70.0%): 57
+2025-10-04 17:40:51,411 - INFO - Kolom dengan data tidak lengkap (kurang dari 70.0%): 481
+2025-10-04 17:40:51,413 - INFO - 
+Filtered DataFrame shape: (57, 57)
+2025-10-04 17:40:51,414 - INFO - Data completeness setelah filtering: 100.00%
+2025-10-04 17:40:51,473 - INFO - 
+Enhanced DataFrame shape: (57, 151)
+2025-10-04 17:40:51,473 - INFO - Jumlah fitur asli: 57
+2025-10-04 17:40:51,473 - INFO - Jumlah fitur baru: 94
+2025-10-04 17:40:51,474 - INFO - Total fitur: 151
+2025-10-04 17:40:51,474 - INFO - 
+Statistik Enhanced DataFrame:
+2025-10-04 17:40:51,475 - INFO - Data completeness: 98.95%
+2025-10-04 17:40:51,480 - INFO - Kolom dengan data tidak lengkap di Enhanced DataFrame: 39
+2025-10-04 17:40:51,508 - INFO - 
+Enhanced DataFrame saved to: datasets/fundamental/TSLA_enhanced_features.csv
+2025-10-04 17:40:51,509 - INFO - DataFrame setelah filter q > 2012-Q1: (53, 151)
+2025-10-04 17:40:51,510 - INFO - Data completeness: 100.00%
+2025-10-04 17:40:51,510 - INFO - Processing technical and fundamental data...
+2025-10-04 17:40:51,510 - INFO - Starting complete preprocessing pipeline with quarter shift mapping
+2025-10-04 17:40:51,511 - INFO - Preparing technical data
+2025-10-04 17:40:51,513 - INFO - Technical data prepared: 3783 rows, 17 columns
+2025-10-04 17:40:51,513 - INFO - Preparing fundamental data
+2025-10-04 17:40:51,514 - INFO - Fundamental data prepared: 53 quarters, 151 features
+2025-10-04 17:40:51,514 - INFO - Converting quarterly data to daily format with quarter shift mapping
+2025-10-04 17:40:55,158 - INFO - Daily conversion completed: 4839 days, 151 features
+2025-10-04 17:40:55,159 - INFO - Data availability with quarter shift mapping: 98.12%
+2025-10-04 17:40:55,159 - INFO - Combining technical and fundamental data
+2025-10-04 17:40:55,176 - INFO - Data combination completed: 3330 rows, 168 columns
+2025-10-04 17:40:55,177 - INFO - Date range: 2012-04-02 to 2025-06-30
+2025-10-04 17:40:55,177 - INFO - Filtering data from 2012-Q2 to 2025-Q2
+2025-10-04 17:40:55,183 - INFO - Filtering completed: 3330 rows remaining
+2025-10-04 17:40:55,183 - INFO - Saving processed data to: datasets/processed/main_processed_data.csv
+2025-10-04 17:40:56,386 - INFO - Data saved successfully: 3330 rows, 168 columns
+2025-10-04 17:40:56,387 - INFO - Complete preprocessing pipeline finished successfully
+2025-10-04 17:40:56,387 - INFO - Data processing completed: (3330, 168)
+2025-10-04 17:40:56,387 - INFO - Processed data saved to: datasets/processed/main_processed_data.csv
+2025-10-04 17:40:56,387 - INFO - 
+Final processed data shape: (3330, 168)
+2025-10-04 17:40:56,388 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-30 00:00:00
+2025-10-04 17:40:56,388 - INFO - Technical columns: 8
+2025-10-04 17:40:56,388 - INFO - Fundamental columns: 157
+2025-10-04 17:40:56,388 - INFO - 
+Preprocessing completed successfully!
+2025-10-04 17:40:56,391 - INFO - Data completeness: 98.30%
+2025-10-04 17:40:56,391 - INFO - 
+=== Applying Triple Barrier Method ===
+2025-10-04 17:40:56,391 - INFO - Starting Triple Barrier Method labeling...
+2025-10-04 17:40:57,377 - INFO - 
+=== Generating Triple Barrier Visualizations ===
+2025-10-04 17:40:57,377 - INFO - Generating Triple Barrier visualizations...
+2025-10-04 17:40:57,648 - INFO - Visualizations generated: 2 files
+2025-10-04 17:40:57,648 - INFO - label_1_html: logs/visualization/visualisasi_20251004_174057_label_positif.html
+2025-10-04 17:40:57,648 - INFO - label_-1_html: logs/visualization/visualisasi_20251004_174057_label_negatif.html
+2025-10-04 17:40:57,648 - INFO - 
+=== Triple Barrier Implementation Complete ===
+2025-10-04 17:40:57,648 - INFO - Labels generated: 3314 samples
+2025-10-04 17:40:57,648 - INFO - Results saved to: logs/triple_barrier/triple_barrier_results.csv
+2025-10-04 17:40:57,648 - INFO - 
+=== Merging Triple Barrier Labels with Features ===
+2025-10-04 17:40:57,648 - INFO - Merging triple_barrier_df with filtered_df based on decision_date...
+2025-10-04 17:40:57,664 - INFO - Triple Barrier data shape: (3314, 11)
+2025-10-04 17:40:57,664 - INFO - Filtered data shape: (3330, 168)
+2025-10-04 17:40:57,664 - INFO - Merged data shape: (3314, 178)
+2025-10-04 17:40:57,668 - INFO - Successfully merged: 3251 complete rows
+2025-10-04 17:40:59,076 - INFO - Merged labeled data saved to: datasets/processed/merged_labeled_data.csv
+2025-10-04 17:40:59,076 - INFO - 
+=== Final Summary ===
+2025-10-04 17:40:59,076 - INFO - Original processed data shape: (3330, 168)
+2025-10-04 17:40:59,076 - INFO - Triple Barrier labels: 3314 samples
+2025-10-04 17:40:59,076 - INFO - Merged labeled data shape: (3314, 178)
+2025-10-04 17:40:59,077 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-30 00:00:00
+2025-10-04 17:40:59,077 - INFO - Date range: 2012-04-02 00:00:00 to 2025-06-05 00:00:00
+2025-10-04 17:40:59,077 - INFO - Technical + Fundamental features: 168 columns
+2025-10-04 17:40:59,077 - INFO - Total features in merged data: 178 columns
+2025-10-04 17:40:59,078 - INFO - Triple Barrier parameters used: {'volatility_window': 20, 'upper_barrier_multiplier': 1.0, 'lower_barrier_multiplier': 1.0, 'time_barrier_days': 15, 'verbose': True}
+2025-10-04 17:40:59,078 - INFO - 
+All preprocessing, labeling, and merging completed successfully!
+2025-10-04 17:40:59,079 - INFO - Dropped columns: ['decision_date', 'entry_date', 'end_date', 'end_price', 'return', 'barrier_touched', 'value_at_barrier_touched', 'time_converted', 'datetime', 'time']
+2025-10-04 17:40:59,080 - INFO - Training DataFrame shape after dropping columns: (3314, 168)
+2025-10-04 17:40:59,080 - INFO - Training DataFrame columns: ['entry_price', 'upper_barrier', 'lower_barrier', 'label', 'open', 'high', 'low', 'close', 'Volume', 'Histogram', 'MACD', 'Signal', 'K', 'D', 'Turnover (Cr)', '10 MA Turnover', 'Turnover / 10MA (X)', 'AccountsPayableCurrent', 'AccountsReceivableNetCurrent', 'AccumulatedDepreciationDepletionAndAmortizationPropertyPlantAndEquipment', 'AccumulatedOtherComprehensiveIncomeLossNetOfTax', 'AdditionalPaidInCapitalCommonStock', 'AllocatedShareBasedCompensationExpense', 'Assets', 'AssetsCurrent', 'CashAndCashEquivalentsAtCarryingValue', 'CommonStockValue', 'ComprehensiveIncomeNetOfTax', 'CostOfRevenue', 'EmployeeRelatedLiabilitiesCurrent', 'GrossProfit', 'IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest', 'IncomeTaxExpenseBenefit', 'IncreaseDecreaseInAccountsPayableAndAccruedLiabilities', 'IncreaseDecreaseInAccountsReceivable', 'IncreaseDecreaseInOtherNoncurrentLiabilities', 'IncreaseDecreaseInPrepaidDeferredExpenseAndOtherAssets', 'InterestCostsCapitalized', 'InterestExpense', 'InventoryNet', 'InventoryWriteDown', 'InvestmentIncomeInterest', 'Liabilities', 'LiabilitiesAndStockholdersEquity', 'LiabilitiesCurrent', 'NetCashProvidedByUsedInFinancingActivities', 'NetCashProvidedByUsedInInvestingActivities', 'NetCashProvidedByUsedInOperatingActivities', 'NetIncomeLoss', 'NoncashOrPartNoncashAcquisitionValueOfAssetsAcquired1', 'NoncurrentAssets', 'OperatingExpenses', 'OperatingIncomeLoss', 'OtherAssetsNoncurrent', 'OtherComprehensiveIncomeLossForeignCurrencyTransactionAndTranslationAdjustmentNetOfTax', 'OtherLiabilitiesNoncurrent', 'OtherNonoperatingIncomeExpense', 'PaymentsToAcquirePropertyPlantAndEquipment', 'PrepaidExpenseAndOtherAssetsCurrent', 'ProceedsFromIssuanceOfSharesUnderIncentiveAndShareBasedCompensationPlansIncludingStockOptions', 'ProductWarrantyAccrualPreexistingIncreaseDecrease', 'PropertyPlantAndEquipmentGross', 'PropertyPlantAndEquipmentNet', 'ResearchAndDevelopmentExpense', 'RetainedEarningsAccumulatedDeficit', 'Revenues', 'SellingGeneralAndAdministrativeExpense', 'ShareBasedCompensation', 'StandardProductWarrantyAccrual', 'StandardProductWarrantyAccrualPayments', 'StandardProductWarrantyAccrualWarrantiesIssued', 'StockholdersEquity', 'TaxesPayableCurrent', 'UnrecognizedTaxBenefits', 'current_ratio', 'quick_ratio', 'cash_ratio', 'working_capital', 'accounts_receivable_turnover', 'days_sales_outstanding', 'inventory_turnover', 'days_inventory_outstanding', 'accounts_payable_turnover', 'days_payable_outstanding', 'cash_conversion_cycle', 'gross_profit_margin', 'operating_profit_margin', 'net_profit_margin', 'return_on_assets', 'return_on_equity', 'debt_to_equity_ratio', 'debt_to_assets_ratio', 'interest_coverage_ratio', 'operating_expense_ratio', 'rd_to_revenue_ratio', 'sga_to_revenue_ratio', 'fixed_asset_turnover', 'total_asset_turnover', 'capital_expenditure_ratio', 'compensation_efficiency', 'warranty_reserve_ratio', 'depreciation_rate', 'operating_cash_flow_to_net_income_ratio', 'effective_tax_rate', 'revenue_growth_rate', 'net_income_growth_rate', 'asset_growth_rate', 'accrual_ratio', 'cash_flow_to_revenue_ratio', 'return_on_invested_capital', 'cash_return_on_capital_invested', 'fixed_assets_to_long_term_debt_ratio', 'non_current_asset_turnover', 'quarterly_gross_profit_stability', 'revenue_to_expense_growth_differential', 'quarterly_cash_flow_quality', 'dividend_payout_ratio', 'stock_based_compensation_to_operating_expense_ratio', 'financial_leverage_index', 'asset_coverage_ratio', 'quarterly_margin_expansion', 'asset_utilization_ratio', 'capacity_utilization_proxy', 'altman_z_score', 'dupont_analysis_roe', 'economic_value_added', 'rd_efficiency_ratio', 'innovation_investment_ratio', 'revenue_momentum', 'earnings_momentum', 'quarterly_earnings_quality_index', 'non_operating_items_ratio', 'revenues_qoq_growth', 'revenues_yoy_growth', 'revenues_ttm', 'revenues_acceleration', 'revenues_seasonal_index', 'revenues_moving_avg', 'revenues_run_rate', 'revenues_volatility', 'revenues_seasonal_dependency', 'net_income_qoq_growth', 'net_income_yoy_growth', 'net_income_ttm', 'net_income_acceleration', 'net_income_seasonal_index', 'net_income_moving_avg', 'net_income_run_rate', 'net_income_volatility', 'assets_qoq_growth', 'assets_yoy_growth', 'assets_ttm', 'operating_income_qoq_growth', 'operating_income_yoy_growth', 'operating_income_ttm', 'cash_qoq_growth', 'cash_yoy_growth', 'equity_qoq_growth', 'equity_yoy_growth', 'liabilities_qoq_growth', 'liabilities_yoy_growth', 'quarterly_operating_leverage', 'quarterly_cash_burn_rate', 'revenues_ytd', 'netincomeloss_ytd', 'operatingincomeloss_ytd', 'long_term_revenue_cagr', 'operating_margin_trend']
+2025-10-04 17:40:59,080 - INFO - 
+=== Splitting Data into Train, Validation, and Test Sets (Time-based) ===
+2025-10-04 17:40:59,080 - INFO - Splitting data into train, validation, and test sets using time-based approach...
+2025-10-04 17:40:59,092 - INFO - Test data period: 2024-07-01 00:00:00 to 2025-06-05 00:00:00
+2025-10-04 17:40:59,092 - INFO - Test data shape: (234, 178)
+2025-10-04 17:40:59,095 - INFO - Train+Val data period: 2012-04-02 00:00:00 to 2024-06-28 00:00:00
+2025-10-04 17:40:59,095 - INFO - Train+Val data shape: (3080, 178)
+2025-10-04 17:40:59,110 - INFO - X_train shape: (2464, 167), y_train shape: (2464,)
+2025-10-04 17:40:59,110 - INFO - X_test shape: (234, 167), y_test shape: (234,)
+2025-10-04 17:40:59,110 - INFO - X_val shape: (616, 167), y_val shape: (616,)
+2025-10-04 17:41:00,379 - INFO - Train, test, and validation data saved to datasets/training_data
+2025-10-04 17:41:00,379 - INFO - 8. HYPERPARAMETER TUNING
+2025-10-04 17:41:00,379 - INFO - ================================================================================
+2025-10-04 17:41:00,434 - INFO - 
+Combined HMM, XGBoost, and Barrier Parameters Tuning with Optuna
+2025-10-04 17:41:00,434 - INFO - --------------------------------------------------
+2025-10-04 17:41:00,434 - INFO - Combined HMM, XGBoost, and LSTM Parameters Tuning with Optuna
+2025-10-04 17:41:00,434 - INFO - --------------------------------------------------
+2025-10-04 17:41:00,434 - INFO - TensorFlow available - using XGB-HMM-LSTM hybrid optimization
+2025-10-04 17:41:00,434 - INFO - Starting combined_xgb_hmm_lstm_barrier_parameters optimization with Optuna...
+2025-10-04 17:41:00,985 - INFO - Study 'combined_xgb_hmm_lstm_barrier_parameters' created/loaded with storage: logs/optuna_studies/combined_xgb_hmm_lstm_barrier_parameters.db
+2025-10-04 17:41:02,439 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 17:41:02,439 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 17:41:03,385 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 18:22:20,908 - INFO - Maximum iterations (700) reached
+2025-10-04 18:22:20,909 - INFO - XGB-HMM training completed
+2025-10-04 18:22:20,962 - INFO - Combined Parameters Optimization - Trial 42: New best score 0.7695
+2025-10-04 18:22:22,454 - INFO - Adjusting n_states from 3 to 2 to match number of unique classes
+2025-10-04 18:22:22,454 - INFO - Starting XGB-HMM training with 2 states for 2 classes...
+2025-10-04 18:22:22,455 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 18:22:22,996 - WARNING - Model is not converging.  Current: -4632809.968798761 is not greater than -4632809.968798617. Delta is -1.4435499906539917e-07
+2025-10-04 18:22:23,008 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 18:43:18,535 - INFO - Maximum iterations (810) reached
+2025-10-04 18:43:18,535 - INFO - XGB-HMM training completed
+2025-10-04 18:43:18,586 - INFO - Combined Parameters Optimization - Trial 43: New best score 0.7971
+2025-10-04 18:43:20,520 - INFO - Adjusting n_states from 4 to 3 to match number of unique classes
+2025-10-04 18:43:20,520 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 18:43:20,521 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 18:43:21,318 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 19:10:36,567 - INFO - Maximum iterations (520) reached
+2025-10-04 19:10:36,567 - INFO - XGB-HMM training completed
+2025-10-04 19:10:37,304 - INFO - Combined Parameters Optimization - Trial 44: New best score 0.8539
+2025-10-04 19:10:39,295 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 19:10:39,295 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 19:10:40,085 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 19:35:24,651 - INFO - Maximum iterations (470) reached
+2025-10-04 19:35:24,651 - INFO - XGB-HMM training completed
+2025-10-04 19:35:24,708 - INFO - Combined Parameters Optimization - Trial 45: New best score 0.8636
+2025-10-04 19:35:27,702 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 19:35:27,702 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 19:35:28,451 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 20:06:12,837 - INFO - Maximum iterations (580) reached
+2025-10-04 20:06:12,837 - INFO - XGB-HMM training completed
+2025-10-04 20:06:14,773 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 20:06:14,773 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 20:06:15,540 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 20:07:36,305 - INFO - Converged after 25 iterations
+2025-10-04 20:07:36,305 - INFO - XGB-HMM training completed
+2025-10-04 20:07:36,359 - INFO - Combined Parameters Optimization - Trial 47: New best score 0.8718
+2025-10-04 20:07:38,195 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 20:07:38,195 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 20:07:39,042 - WARNING - Model is not converging.  Current: -4485449.68915631 is not greater than -4485449.689156289. Delta is -2.0489096641540527e-08
+2025-10-04 20:07:39,072 - INFO - Training initial XGBoost model with GMM-derived states...
+2025-10-04 20:12:40,739 - INFO - Maximum iterations (100) reached
+2025-10-04 20:12:40,739 - INFO - XGB-HMM training completed
+2025-10-04 20:12:42,016 - INFO - Starting XGB-HMM training with 3 states for 3 classes...
+2025-10-04 20:12:42,016 - INFO - Initializing GMM-HMM for state estimation...
+2025-10-04 20:12:42,846 - WARNING - Model is not converging.  Current: -4485448.490541037 is not greater than -4485448.490540987. Delta is -5.029141902923584e-08
+2025-10-04 20:12:42,865 - INFO - Training initial XGBoost model with GMM-derived states...

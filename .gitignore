@@ -5,3 +5,4 @@ __pycache__/
 .vscode/
 datasets/fundamental/sec_data/
 datasets/fundamental/companyfacts.zip
+venv/
